@@ -14,7 +14,6 @@ public class AIMovementController : MonoBehaviour {
 
     //Max distance to follow the player
     public float maxDistance = 10;
-    private RaycastHit shot;
 
     //Sound when acquiring the player
     public AudioClip sound;
@@ -29,10 +28,11 @@ public class AIMovementController : MonoBehaviour {
     }
 
     void Update() {
-        //Look at the player
-        transform.LookAt(player.transform);
         //Measure the distance to the player
         if (Vector3.Distance(transform.position, player.transform.position) < maxDistance) {
+            //Look at the player
+            transform.LookAt(player.transform);
+            
             //Play acquisition sound
             if (sound && !soundPlayed) {
                 AudioSource.PlayClipAtPoint(sound, transform.position);

@@ -15,7 +15,6 @@ public class TowerController : MonoBehaviour {
 
     //Max distance for the player to fire the bullet
     public float maxDistance = 10f;
-    private RaycastHit shot;
 
     public float timeOffset = 0;
 
@@ -43,10 +42,12 @@ public class TowerController : MonoBehaviour {
     void Update() {
         timePassed += Time.deltaTime;
 
-        //Track the player
-        transform.LookAt(player.transform);
         //Measure the distance to the player
         if (Vector3.Distance(transform.position, player.transform.position) < maxDistance) {
+            
+            //Track the player
+            transform.LookAt(player.transform);
+            
             if (timePassed >= timeOut) {
                 if (!audioSource.isPlaying) {
                     audioSource.Play();
